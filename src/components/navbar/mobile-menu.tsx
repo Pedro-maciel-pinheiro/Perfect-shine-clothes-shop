@@ -1,16 +1,15 @@
-'use client';
+"use client";
 
-import { Dialog, Transition } from '@headlessui/react';
-import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { Fragment, Suspense, useEffect, useState } from 'react';
+import { Dialog, Transition } from "@headlessui/react";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Fragment, Suspense, useEffect, useState } from "react";
+import Search, { SearchSkeleton } from "./search";
 
+import { Menu as Menubar, X } from "lucide-react";
+import { navigationLinksProps, MenuProps } from "@/constant";
 
-import Search, { SearchSkeleton } from './search';
-import { Menu } from '@/lib/shopify/types';
-import { Menu as Menubar, X} from 'lucide-react';
-
-export default function MobileMenu({ menu }: { menu: Menu[] }) {
+export default function MobileMenu({ menu }: MenuProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -23,8 +22,8 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
         setIsOpen(false);
       }
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [isOpen]);
 
   useEffect(() => {
@@ -79,13 +78,17 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                 </div>
                 {menu.length ? (
                   <ul className="flex w-full flex-col">
-                    {menu.map((item: Menu) => (
+                    {menu.map((item: navigationLinksProps) => (
                       <li
                         className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white"
-                        key={item.title}
+                        key={item.label}
                       >
-                        <Link href={item.path} prefetch={true} onClick={closeMobileMenu}>
-                          {item.title}
+                        <Link
+                          href={item.path}
+                          prefetch={true}
+                          onClick={closeMobileMenu}
+                        >
+                          {item.label}
                         </Link>
                       </li>
                     ))}

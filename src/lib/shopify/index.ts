@@ -364,25 +364,27 @@ export async function getCollections(): Promise<Collection[]> {
   return collections;
 }
 
-export async function getMenu(handle: string): Promise<Menu[]> {
-  const res = await shopifyFetch<ShopifyMenuOperation>({
-    query: getMenuQuery,
-    tags: [TAGS.collections],
-    variables: {
-      handle,
-    },
-  });
+// export async function getMenu(handle: string): Promise<Menu[]> {
+//   const res = await shopifyFetch<ShopifyMenuOperation>({
+//     query: getMenuQuery,
+//     tags: [TAGS.collections],
+//     variables: {
+//       handle,
+//     },
+//   });
 
-  return (
-    res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
-      title: item.title,
-      path: item.url
-        .replace(domain, "")
-        .replace("/collections", "/search")
-        .replace("/pages", ""),
-    })) || []
-  );
-}
+//   return (
+//     res.body?.data?.menu?.items.map((item: { title: string; url: string }) => {
+//       console.log('Original URL:', item.url);
+//       const path = item.url.replace(domain, '');
+//       console.log('Processed Path:', path);
+//       return {
+//         title: item.title,
+//         path
+//       };
+//     }) || []
+//   );
+// }
 
 export async function getPage(handle: string): Promise<Page> {
   const res = await shopifyFetch<ShopifyPageOperation>({
@@ -409,6 +411,7 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
     tags: [TAGS.products],
     variables: {
       handle,
+      
     },
   });
 

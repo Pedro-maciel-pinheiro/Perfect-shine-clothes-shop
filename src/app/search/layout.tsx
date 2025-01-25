@@ -1,4 +1,3 @@
-
 import Collections from '@/components/search-bar/search/collections';
 import ChildrenWrapper from './children-wrapper';
 import FilterList from '@/components/search-bar/search/filter';
@@ -19,7 +18,7 @@ export default function SearchLayout({ children }: { children: React.ReactNode }
           <FilterList list={sorting} title="Sort by" />
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

@@ -22,17 +22,18 @@ export function GridTileImage({
   return (
     <div
       className={cn(
-        'group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black',
+        'group flex h-full w-full items-center justify-center dark:hover:border-blue-500 overflow-hidden rounded-sm border bg-white hover:border-blue-300 dark:bg-black',
         {
           relative: label,
-          'border-2 border-blue-600': active,
+          'border-2 border-blue-500': active,
           'border-neutral-200 dark:border-neutral-800': !active
         }
       )}
     >
       {props.src ? (
         <Image
-          className={cn('relative h-full w-full object-contain', {
+          
+          className={cn('relative h-full w-full object-cover object-center ', {
             'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
           })}
           {...props}

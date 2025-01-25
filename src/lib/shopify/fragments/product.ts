@@ -51,6 +51,40 @@ const productFragment = /* GraphQL */ `
         }
       }
     }
+    media(first: 20) {
+      edges {
+        node {
+          mediaContentType
+          alt
+          previewImage {
+            ...image
+          }
+          ... on MediaImage {
+            image {
+              ...image
+            }
+          }
+          ... on Video {
+            id
+            sources {
+              mimeType
+              url
+            }
+          }
+          ... on ExternalVideo {
+            id
+            embedUrl
+          }
+          ... on Model3d {
+            id
+            sources {
+              mimeType
+              url
+            }
+          }
+        }
+      }
+    }
     seo {
       ...seo
     }

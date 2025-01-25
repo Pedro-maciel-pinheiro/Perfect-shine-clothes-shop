@@ -1,45 +1,44 @@
-'use client';
+"use client";
 
-import { Menu } from '@/lib/shopify/types';
-import clsx from 'clsx';
+import { useEffect, useState } from "react";
+import { navigationLinksProps } from "@/constant";
+import clsx from "clsx";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-
-export function FooterMenuItem({ item }: { item: Menu }) {
+export function FooterMenuItem({ link }: { link: navigationLinksProps }) {
   const pathname = usePathname();
-  const [active, setActive] = useState(pathname === item.path);
+  const [active, setActive] = useState(pathname === link.path);
 
   useEffect(() => {
-    setActive(pathname === item.path);
-  }, [pathname, item.path]);
+    setActive(pathname === link.path);
+  }, [pathname, link.path]);
 
   return (
-    <li>
+    <li >
       <Link
-        href={item.path}
+        href={link.path}
         className={clsx(
-          'block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300',
+          "block p-2 text-lg underline-offset-4 hover:text-black hover:underline dark:hover:text-neutral-300 md:inline-block md:text-sm",
           {
-            'text-black dark:text-neutral-300': active
-          }
+            "text-black dark:text-white underline": active,
+          },
         )}
       >
-        {item.title}
+        {link.label}
       </Link>
     </li>
   );
 }
 
-export default function FooterMenu({ menu }: { menu: Menu[] }) {
+export default function FooterMenu({ menu }: { menu: navigationLinksProps[] }) {
   if (!menu.length) return null;
 
   return (
     <nav>
       <ul>
-        {menu.map((item: Menu) => {
-          return <FooterMenuItem key={item.title} item={item} />;
+        {menu.map((linkpath: navigationLinksProps) => {
+          return <FooterMenuItem key={linkpath.label} link={linkpath} />;
         })}
       </ul>
     </nav>
