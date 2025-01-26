@@ -13,7 +13,7 @@ import { EditItemQuantityButton } from "./edit-item-quantity-button";
 import {
   Sheet,
   SheetContent,
-  SheetFooter,
+
   SheetHeader,
   SheetTitle,
   SheetTrigger,
