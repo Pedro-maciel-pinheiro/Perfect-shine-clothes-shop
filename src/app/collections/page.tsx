@@ -1,6 +1,4 @@
-import { PageNotFoundError } from "next/dist/shared/lib/utils";
 import React from "react";
-import Error from "@/app/error";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 

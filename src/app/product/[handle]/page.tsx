@@ -7,9 +7,7 @@ import { getProduct, getProductRecommendations } from "@/lib/shopify";
 import { HIDDEN_PRODUCT_TAG } from "@/lib/constants";
 import { ProductProvider } from "@/components/product/product-context";
 import { Gallery } from "@/components/product/gallery";
-import { Image, Video } from "@/lib/shopify/types";
 import { ProductDescription } from "@/components/product/product-description";
-import Footer from "@/components/footer";
 import { GridTileImage } from "@/components/grid/tile";
 
 export async function generateMetadata(props: {

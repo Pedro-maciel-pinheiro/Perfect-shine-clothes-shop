@@ -1,5 +1,3 @@
-import { ThreeItemGrid } from "@/components/grid/three-items";
-import { getCollectionProducts } from "@/lib/shopify";
 import Hero from "./home/hero";
 import CollectionSection from "./home/collection-section";
 
