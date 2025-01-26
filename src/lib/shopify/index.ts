@@ -18,7 +18,6 @@ import {
   getCollectionQuery,
   getCollectionsQuery,
 } from "./queries/collection";
-import { getMenuQuery } from "./queries/menu";
 import { getPageQuery, getPagesQuery } from "./queries/page";
 import {
   getProductQuery,

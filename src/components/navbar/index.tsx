@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Suspense } from "react";
 import MobileMenu from "./mobile-menu";
 import Search, { SearchSkeleton } from "./search";
-import LogoSquare from "../logo-square";
 import CartModal from "../cart/modal";
 import ThemeSwitch from "../theme/theme-switch";
 import { navigationLinks } from "@/constant";
