@@ -6,7 +6,7 @@ import CartModal from "../cart/modal";
 import ThemeSwitch from "../theme/theme-switch";
 import { navigationLinks } from "@/constant";
 
-const { SITE_NAME } = process.env;
+// const { SITE_NAME } = process.env;
 
 export async function Navbar() {
   const menu = navigationLinks;

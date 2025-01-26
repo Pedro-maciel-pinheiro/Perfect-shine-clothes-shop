@@ -6,6 +6,16 @@ import { GridTileImage } from "../grid/tile";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { Media } from "@/lib/shopify/types";
 
+// Define a type that covers both image and video media
+type MediaItem = 
+  | ({ type: 'image'; src: string; altText: string })
+  | ({ 
+      type: 'video'; 
+      id: string; 
+      sources: Array<{ url: string; mimeType: string }>;
+      previewImage?: { url: string };
+    });
+
 export function Gallery({
   images,
   media,
@@ -16,9 +26,15 @@ export function Gallery({
   const { state, updateImage } = useProduct();
   const updateURL = useUpdateURL();
 
-  const combinedMedia = [
-    ...(media?.filter((m) => m.mediaContentType === "VIDEO") || []),
-    ...images,
+  // Transform media into a consistent MediaItem type
+  const combinedMedia: MediaItem[] = [
+    ...(media?.filter((m) => m.mediaContentType === "VIDEO").map(m => ({
+      type: 'video' as const,
+      id: m.id,
+      sources: m.sources || [],
+      previewImage: m.previewImage
+    })) || []),
+    ...images.map(img => ({ type: 'image' as const, ...img }))
   ];
 
   const imageIndex = state.image ? parseInt(state.image) : 0;
@@ -34,30 +50,29 @@ export function Gallery({
   const renderMedia = () => {
     const currentMedia = combinedMedia[imageIndex];
 
-    if ("sources" in currentMedia) {
+    if (currentMedia.type === 'video') {
       return (
         <video
           key={currentMedia.id}
-          poster={(currentMedia as any).previewImage?.url}
+          poster={currentMedia.previewImage?.url}
           autoPlay
           loop
           className="h-full w-full object-contain"
         >
-          {(currentMedia as any).sources.map((source: any) => (
+          {currentMedia.sources.map((source) => (
             <source key={source.url} src={source.url} type={source.mimeType} />
           ))}
         </video>
       );
     }
 
-    
     return (
       <Image
         className="h-full w-full object-contain"
         fill
         sizes="(min-width: 1024px) 66vw, 100vw"
-        alt={(currentMedia as { altText: string }).altText}
-        src={(currentMedia as { src: string }).src}
+        alt={currentMedia.altText}
+        src={currentMedia.src}
         priority={true}
       />
     );
@@ -106,9 +121,11 @@ export function Gallery({
           {combinedMedia.map((media, index) => {
             const isActive = index === imageIndex;
             const thumbnailSrc =
-              "previewImage" in media
-                ? (media as any).previewImage?.url
-                : (media as { src: string }).src;
+              media.type === 'video' && media.previewImage
+                ? media.previewImage.url
+                : media.type === 'image'
+                ? media.src
+                : '';
 
             return (
               <li key={thumbnailSrc} className="h-20 w-20">
@@ -121,7 +138,7 @@ export function Gallery({
                   className="h-full w-full"
                 >
                   <GridTileImage
-                    alt={"altText" in media ? media.altText : ""}
+                    alt={media.type === 'image' ? media.altText : ''}
                     src={thumbnailSrc}
                     width={80}
                     height={80}
