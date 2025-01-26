@@ -7,7 +7,7 @@ import { Fragment, Suspense, useEffect, useState } from "react";
 import Search, { SearchSkeleton } from "./search";
 
 import { Menu as Menubar, X } from "lucide-react";
-import { navigationLinksProps, MenuProps } from "@/constant";
+import { navigationLinksProps, MenuProps } from "@/types";
 
 export default function MobileMenu({ menu }: MenuProps) {
   const pathname = usePathname();
