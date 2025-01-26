@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { navigationLinksProps } from "@/constant";
+
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { navigationLinksProps } from "@/types";
 
 export function FooterMenuItem({ link }: { link: navigationLinksProps }) {
   const pathname = usePathname();
