@@ -1,7 +1,7 @@
 import LogoSquare from "@/components/logo-square";
 import Link from "next/link";
 import { navigationLinks } from "@/constant";
-import FooterMenu from "./search-bar/search/footer-menu";
+
 
 const { COMPANY_NAME, SITE_NAME } = process.env;
 
@@ -24,7 +24,7 @@ export default async function Footer() {
           </Link>
         </div>
 
-        <FooterMenu menu={menu} />
+       
 
         <div className="md:ml-auto">
           <a
