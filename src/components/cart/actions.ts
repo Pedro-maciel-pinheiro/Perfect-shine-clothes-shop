@@ -6,7 +6,9 @@ import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export async function addItem(prevState: any, selectedVariantId: string | undefined) {
+type PrevState = unknown;
+
+export async function addItem(prevState: PrevState, selectedVariantId: string | undefined) {
   const cartId = (await cookies()).get('cartId')?.value;
 
   if (!cartId || !selectedVariantId) {
@@ -16,13 +18,13 @@ export async function addItem(prevState: any, selectedVariantId: string | undefi
   try {
     await addToCart(cartId, [{ merchandiseId: selectedVariantId, quantity: 1 }]);
     revalidateTag(TAGS.cart);
-  } catch (e) {
+  } catch (_) {
     return 'Error adding item to cart';
   }
 }
 
-export async function removeItem(prevState: any, merchandiseId: string) {
-  let cartId = (await cookies()).get('cartId')?.value;
+export async function removeItem(prevState: PrevState, merchandiseId: string) {
+  const cartId = (await cookies()).get('cartId')?.value;
 
   if (!cartId) {
     return 'Missing cart ID';
@@ -43,19 +45,19 @@ export async function removeItem(prevState: any, merchandiseId: string) {
     } else {
       return 'Item not found in cart';
     }
-  } catch (e) {
+  } catch (_) {
     return 'Error removing item from cart';
   }
 }
 
 export async function updateItemQuantity(
-  prevState: any,
+  prevState: PrevState,
   payload: {
     merchandiseId: string;
     quantity: number;
   }
 ) {
-  let cartId = (await cookies()).get('cartId')?.value;
+  const cartId = (await cookies()).get('cartId')?.value;
 
   if (!cartId) {
     return 'Missing cart ID';
@@ -85,7 +87,6 @@ export async function updateItemQuantity(
         ]);
       }
     } else if (quantity > 0) {
-      // If the item doesn't exist in the cart and quantity > 0, add it
       await addToCart(cartId, [{ merchandiseId, quantity }]);
     }
 
@@ -97,13 +98,13 @@ export async function updateItemQuantity(
 }
 
 export async function redirectToCheckout() {
-  let cartId = (await cookies()).get('cartId')?.value;
-  let cart = await getCart(cartId);
+  const cartId = (await cookies()).get('cartId')?.value;
+  const cart = await getCart(cartId);
 
   redirect(cart!.checkoutUrl);
 }
 
 export async function createCartAndSetCookie() {
-  let cart = await createCart();
+  const cart = await createCart();
   (await cookies()).set('cartId', cart.id!);
 }
