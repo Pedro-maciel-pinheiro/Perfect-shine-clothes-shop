@@ -18,7 +18,7 @@ export async function addItem(prevState: PrevState, selectedVariantId: string | 
   try {
     await addToCart(cartId, [{ merchandiseId: selectedVariantId, quantity: 1 }]);
     revalidateTag(TAGS.cart);
-  } catch (_) {
+  } catch {
     return 'Error adding item to cart';
   }
 }
@@ -45,7 +45,7 @@ export async function removeItem(prevState: PrevState, merchandiseId: string) {
     } else {
       return 'Item not found in cart';
     }
-  } catch (_) {
+  } catch {
     return 'Error removing item from cart';
   }
 }
