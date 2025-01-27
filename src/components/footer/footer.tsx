@@ -19,7 +19,7 @@ export default function Footer() {
             className="flex items-center gap-2 text-black dark:text-white md:pt-1"
             href="/"
           >
-            <LogoSquare size="sm" />
+            <LogoSquare/>
             <span className="uppercase">Perfect-shine</span>
           </Link>
         </div>
