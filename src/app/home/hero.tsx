@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="relative">
         <div className="absolute flex h-full w-full items-end justify-start bg-black/30">
           <div className="flex flex-col gap-1 p-2 text-white md:mb-10 md:gap-4 md:p-8">
-            <h1 className="text-2xl font-semibold md:text-5xl lg:text-6xl">
+            <h1 className="text-2xl font-semibold md:text-5xl lg:text-6xl mx-1">
               GTR T-SHIRTS COLLECTION
             </h1>
             <p className="mx-2 w-72 text-sm font-medium md:w-[500px] md:text-justify md:text-lg">

@@ -11,6 +11,7 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/footer/footer";
+import { perfectshine_font } from "@/fonts/font";
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
@@ -54,7 +55,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body >
+      <body className={perfectshine_font.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
