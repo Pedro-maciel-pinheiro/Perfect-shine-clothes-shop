@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <div className="flex h-full w-full flex-col items-center gap-1">
+    <div className="flex h-full w-full flex-col items-center gap-1 bg-black">
       <div className="relative">
         <div className="absolute flex h-full w-full items-end justify-start bg-black/30">
           <div className="flex flex-col gap-1 p-2 text-white md:mb-10 md:gap-4 md:p-8">
@@ -24,7 +24,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="p-2">
+        <div className="p-2 bg-black">
           <video
             src="/video/gtr.mkv"
             autoPlay
