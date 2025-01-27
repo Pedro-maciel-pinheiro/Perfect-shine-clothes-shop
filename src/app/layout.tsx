@@ -9,6 +9,8 @@ import { ReactNode } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
+import { ThemeProvider } from "@/components/theme-provider";
+import Footer from "@/components/footer/footer";
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
@@ -51,16 +53,24 @@ export default async function RootLayout({
   const cart = getCart(cartId);
 
   return (
-    <html lang="en" className={""}>
-      <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
-        <CartProvider cartPromise={cart}>
-          <Navbar />
-          <main>
-            {children}
-            <Toaster closeButton />
-            <WelcomeToast />
-          </main>
-        </CartProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <CartProvider cartPromise={cart}>
+            <Navbar />
+            <main >
+              {children}
+              <Toaster closeButton />
+              <WelcomeToast />
+            </main>
+            <Footer/>
+          </CartProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

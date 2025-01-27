@@ -5,56 +5,43 @@ import Search, { SearchSkeleton } from "./search";
 import CartModal from "../cart/modal";
 import ThemeSwitch from "../theme/theme-switch";
 import { navigationLinks } from "@/constant";
+import LogoSquare from "../logo-square";
+import { MenuLinks } from "./menu-links";
 
 // const { SITE_NAME } = process.env;
 
-export async function Navbar() {
+export function Navbar() {
   const menu = navigationLinks;
 
   return (
-    <nav className="relative flex items-center justify-between p-4 lg:px-6">
-      <div className="block flex-none md:hidden">
+    <nav className="relative flex items-center p-3">
+      <div className="block flex-none lg:hidden">
         <MobileMenu menu={menu} />
       </div>
-      <div className="flex w-full items-center">
-        <div className="flex w-full md:w-1/3">
+      <div className="flex items-center ">
+        <div className="flex w-full gap-3">
           <Link
             href="/"
             prefetch={true}
-            className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
+            className="flex w-full items-center justify-center gap-2 px-2 md:w-auto lg:px-0"
           >
-           
+            <LogoSquare /> <p className="font-semibold">Perfect-Shine</p>
           </Link>
-
-          <ul className="hidden gap-6 text-sm md:flex md:items-center mt-[2px] ">
-            {menu.map((link) => (
-              <li key={link.label}>
-                <Link
-                  href={link.path}
-                  className="text-black/80  
-                   font-semibold underline-offset-4 hover:text-black hover:underline
-                    dark:text-neutral-200 dark:hover:text-neutral-50"
-                >
-                  {link.label}
-                </Link>
-                
-              </li>
-            ))}
-          </ul>
+          <section className="mt-[2px] hidden gap-2 text-sm md:items-center lg:flex">
+            <MenuLinks menu={menu} className="mt-1" />
+          </section>
         </div>
-        <div className="hidden justify-center md:flex md:w-1/3">
-          <Suspense fallback={<SearchSkeleton />}>
-            <Search />
-          </Suspense>
-        </div>
-        <div className="flex justify-end gap-2 md:w-1/3 md:gap-4">
-          {/* Change Color Button Toggle */}
+        <div className="absolute right-0 flex w-full max-w-96 items-center justify-end gap-3 px-2">
+          <div className="hidden lg:block">
+            <Suspense fallback={<SearchSkeleton />}>
+              <Search />
+            </Suspense>
+          </div>
+          <span className="mt-1 hidden h-8 w-px rounded-full bg-gray-400 lg:block" />
           <ThemeSwitch />
-
           <span className="mt-1 h-8 w-px rounded-full bg-gray-400" />
           <CartModal />
         </div>
-        <div className="flex justify-end"></div>
       </div>
     </nav>
   );

@@ -1,23 +1,15 @@
-import { cn } from '@/lib/utils';
-import { X } from 'lucide-react';
+import { cn } from "@/lib/utils";
+import { Circle} from "lucide-react";
 
-
-export default function LogoSquare({ size }: { size?: 'sm' | undefined }) {
+export default function LogoSquare() {
   return (
     <div
       className={cn(
-        'flex flex-none items-center justify-center border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-black',
-        {
-          'h-[40px] w-[40px] rounded-xl': !size,
-          'h-[30px] w-[30px] rounded-lg': size === 'sm'
-        }
+        "flex h-[35px] w-[35px] flex-none items-center justify-center rounded-lg border border-neutral-200 bg-white dark:border-neutral-700 lg:h-[40px] lg:w-[40px]",
       )}
     >
-      <X
-        className={cn({
-          'h-[16px] w-[16px]': !size,
-          'h-[10px] w-[10px]': size === 'sm'
-        })}
+      <Circle
+        className={cn("rounded-full bg-red-500 text-red-500 h-[16px] w-[16px]")}
       />
     </div>
   );

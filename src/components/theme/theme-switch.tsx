@@ -12,7 +12,7 @@ export default function ThemeSwitch() {
 
   if (!mounted)
     return (
-      <span className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border transition-all hover:border-gray-400">
+      <span className="flex h-10 w-10 cursor-pointer items-center justify-center mt-[2px] rounded-lg border transition-all hover:border-gray-400">
         <Loader className="animate-spin duration-1000 transition-all" />
       </span>
     );
@@ -21,7 +21,7 @@ export default function ThemeSwitch() {
     return (
       <div
         onClick={() => setTheme("light")}
-        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border transition-all hover:border-gray-400"
+        className="flex h-10 w-10 cursor-pointer items-center justify-center mt-[2px] rounded-lg border transition-all hover:border-gray-400"
       >
         <Moon size={20} className="transition-all hover:scale-110" />
       </div>
@@ -32,7 +32,7 @@ export default function ThemeSwitch() {
     return (
       <div
         onClick={() => setTheme("dark")}
-        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border transition-all hover:border-gray-400"
+        className="flex h-10 w-10 cursor-pointer items-center justify-center mt-[2px] rounded-lg border transition-all hover:border-gray-400"
       >
         <Sun size={20} className="transition-all hover:scale-110" />
       </div>

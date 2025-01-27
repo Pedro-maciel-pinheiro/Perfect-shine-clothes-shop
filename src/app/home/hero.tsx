@@ -16,20 +16,23 @@ export default function Hero() {
               Nissan racing spirit with our Limited Edition Skyline GTR Legends
               T-Shirt Collection.
             </p>
-            <Link href={""}>
-              <Button className="z-10 mx-2 w-28 border bg-white text-black transition-all duration-200 hover:border-white hover:bg-blue-600 hover:text-white">
+            <Link href={"/collections/t-shirts"}>
+              <Button className="relative z-20 mx-2 w-28 border bg-white text-black transition-all duration-200 hover:border-white hover:bg-blue-600 hover:text-white">
                 SHOP NOW
               </Button>
             </Link>
           </div>
         </div>
-        <video
-          src="/video/gtr.mkv"
-          autoPlay
-          muted
-          loop
-          className="h-full max-h-[800px] w-screen object-cover"
-        ></video>
+
+        <div className="p-2">
+          <video
+            src="/video/gtr.mkv"
+            autoPlay
+            muted
+            loop
+            className="h-full max-h-[800px] w-screen overflow-hidden rounded-lg object-cover"
+          />
+        </div>
       </div>
     </div>
   );

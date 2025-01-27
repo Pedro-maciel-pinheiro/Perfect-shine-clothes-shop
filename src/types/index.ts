@@ -14,6 +14,7 @@ export  type collectionsImagesProps = {
   
 export type MenuProps ={
     menu:navigationLinksProps[]
+    className?:string
 }
   
 
