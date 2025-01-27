@@ -72,5 +72,5 @@ NEXT_PUBLIC_API_ENDPOINT=your-api-endpoint
 
   <h2>🌐 Connect</h2>
   <ul>
-    <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/pedro-maciel-pinheiro/" target="_blank">Your LinkedIn Profile</a></li>
+    <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/jpmp1998" target="_blank">LinkedIn Profile</a></li>
   </ul>
