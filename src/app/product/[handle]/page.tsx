@@ -10,6 +10,16 @@ import { Gallery } from "@/components/product/gallery";
 import { ProductDescription } from "@/components/product/product-description";
 import { GridTileImage } from "@/components/grid/tile";
 
+const SkeletonGrid = () => (
+  <ul className="my-10 grid gap-6 md:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+    {Array.from({ length: 8 }).map((_, index) => (
+      <li key={index} className="aspect-square h-full w-full flex-none">
+        <div className="aspect-square h-full w-full animate-pulse bg-gray-300 transition-all duration-300" />
+      </li>
+    ))}
+  </ul>
+);
+
 export async function generateMetadata(props: {
   params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
@@ -83,11 +93,7 @@ export default async function ProductPage(props: {
       <div className="mx-auto max-w-screen-2xl px-4">
         <div className="flex flex-col justify-center rounded-lg border border-neutral-200 bg-white p-8 dark:border-neutral-800 dark:bg-black md:p-12 lg:flex-row lg:gap-8">
           <div className="h-full w-full basis-full lg:basis-3/6">
-            <Suspense
-              fallback={
-                <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden" />
-              }
-            >
+            <Suspense fallback={<SkeletonGrid />}>
               <Gallery
                 images={product.images.map((img) => ({
                   src: img.url,

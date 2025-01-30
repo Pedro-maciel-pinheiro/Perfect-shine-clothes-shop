@@ -6,8 +6,6 @@ import { HomeIcon, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-
-
 const NotFoundPage = () => {
   const router = useRouter();
 

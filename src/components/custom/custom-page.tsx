@@ -7,7 +7,7 @@ const SkeletonGrid = () => (
   <ul className="my-10 grid gap-6 md:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-4">
     {Array.from({ length: 8 }).map((_, index) => (
       <li key={index} className="aspect-square h-full w-full flex-none">
-        <div className="animate-pulse aspect-square h-full w-full bg-gray-300" />
+        <div className="animate-pulse aspect-square h-full w-full bg-gray-300 transition-all duration-300" />
       </li>
     ))}
   </ul>
